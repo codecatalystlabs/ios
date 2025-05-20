@@ -327,3 +327,8 @@ func HandlerVHFView(c *fiber.Ctx, db *sql.DB, sl *slog.Logger, store *session.St
 
 	return GenerateHTML(c, db, patient, "vhf_view")
 }
+
+// HandlerVHFSuccess handles the success page after form submission
+func HandlerVHFSuccess(c *fiber.Ctx, db *sql.DB, sl *slog.Logger, store *session.Store, config Config) error {
+	return GenerateHTML(c, db, nil, "vhf_success")
+}

@@ -11,8 +11,9 @@
 <div class="container my-5">
   <h2 class="mb-4 text-center">VHF Case Investigation Form</h2>
 
-  <form id="vhfForm" action="/vhf-cif/save" method="POST" class="needs-validation" novalidate>
+  <form id="vhfForm" method="POST" action="/vhf-cif/save">
     <div class="accordion" id="vhfFormAccordion">
+
       <!-- Section 1: Patient Information -->
       <div class="accordion-item">
         <h2 class="accordion-header" id="headingOne">
@@ -24,12 +25,12 @@
           <div class="accordion-body">
             <div class="row g-3">
               <div class="col-md-3">
-                <label class="form-label">Patient's Surname</label>
-                <input type="text" class="form-control" name="surname" required>
+                <label class="form-label">Patient's Surname*</label>
+                <input type="text" class="form-control" name="surname">
               </div>
               <div class="col-md-3">
                 <label class="form-label">Other Names</label>
-                <input type="text" class="form-control" name="other_names" required>
+                <input type="text" class="form-control" name="other_names">
               </div>
               <div class="col-md-3">
                 <label class="form-label">Date of Birth</label>
@@ -38,14 +39,14 @@
               <div class="col-md-3">
                 <label class="form-label">Or Age</label>
                 <div class="d-flex">
-                  <input type="number" class="form-control me-2" placeholder="Years" name="age_years">
-                  <input type="number" class="form-control" placeholder="Months" name="age_months">
+                  <input type="number" class="form-control me-2" placeholder="Years" name="age_years" min="0">
+                  <input type="number" class="form-control" placeholder="Months" name="age_months" min="0" max="11">
                 </div>
               </div>
               <div class="col-md-2">
-                <label class="form-label d-block">Gender</label>
+                <label class="form-label d-block">Gender*</label>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="gender" value="Male" id="genderMale" required>
+                  <input class="form-check-input" type="radio" name="gender" value="Male" id="genderMale">
                   <label class="form-check-label" for="genderMale">Male</label>
                 </div>
                 <div class="form-check form-check-inline">
@@ -55,7 +56,7 @@
               </div>
               <div class="col-md-4">
                 <label class="form-label">Phone Number of Patient/Family Member</label>
-                <input type="text" class="form-control" name="patient_phone">
+                <input type="tel" class="form-control" name="patient_phone">
               </div>
               <div class="col-md-2">
                 <label class="form-label">Owner of Phone</label>
@@ -67,20 +68,20 @@
               </div>
               <div class="col-md-2">
                 <label class="form-label">Next of Kin Phone</label>
-                <input type="text" class="form-control" name="next_of_kin_phone">
+                <input type="tel" class="form-control" name="next_of_kin_phone">
               </div>
             </div>
             <hr>
             <div class="row g-3">
               <div class="col-md-4">
-                <label class="form-label d-block">Status of patient at time of this case report</label>
+                <label class="form-label d-block">Status of patient at time of this case report*</label>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="status" value="Alive" id="alive" required>
-                  <label class="form-check-label" for="alive">Alive</label>
+                  <input class="form-check-input" type="radio" name="status" value="Alive" id="statusAlive">
+                  <label class="form-check-label" for="statusAlive">Alive</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="status" value="Dead" id="dead">
-                  <label class="form-check-label" for="dead">Dead</label>
+                  <input class="form-check-input" type="radio" name="status" value="Dead" id="statusDead">
+                  <label class="form-check-label" for="statusDead">Dead</label>
                 </div>
               </div>
               <div class="col-md-3">
@@ -104,7 +105,7 @@
                 <input type="text" class="form-control" name="subcounty">
               </div>
               <div class="col-md-2">
-                <label class="form-label">District</label>
+                <label class="form-label">District*</label>
                 <input type="text" class="form-control" name="district">
               </div>
               <div class="col-md-2">
@@ -114,41 +115,49 @@
               <div class="col-md-12">
                 <label class="form-label d-block">Occupation</label>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="occupation" value="Farmer" id="Farmer">
-                  <label class="form-check-label" for="Farmer">Farmer</label>
+                  <input class="form-check-input" type="radio" name="occupation" value="Farmer" id="occupationFarmer">
+                  <label class="form-check-label" for="occupationFarmer">Farmer</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="occupation" value="Butcher" id="Butcher">
-                  <label class="form-check-label" for="Butcher">Butcher</label>
+                  <input class="form-check-input" type="radio" name="occupation" value="Butcher" id="occupationButcher">
+                  <label class="form-check-label" for="occupationButcher">Butcher</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="occupation" value="Religiousleader" id="Religiousleader">
-                  <label class="form-check-label" for="Religiousleader">Religious Leader</label>
+                  <input class="form-check-input" type="radio" name="occupation" value="Religious Leader" id="occupationReligious">
+                  <label class="form-check-label" for="occupationReligious">Religious Leader</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="occupation" value="Housewife" id="Housewife">
-                  <label class="form-check-label" for="Housewife">Housewife</label>
+                  <input class="form-check-input" type="radio" name="occupation" value="Housewife" id="occupationHousewife">
+                  <label class="form-check-label" for="occupationHousewife">Housewife</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="occupation" value="Pupil/student" id="pupil_student">
-                  <label class="form-check-label" for="pupil_student">Pupil/student</label>
+                  <input class="form-check-input" type="radio" name="occupation" value="Pupil/Student" id="occupationStudent">
+                  <label class="form-check-label" for="occupationStudent">Pupil/Student</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="occupation" value="Child" id="child">
-                  <label class="form-check-label" for="child">Child</label>
+                  <input class="form-check-input" type="radio" name="occupation" value="Child" id="occupationChild">
+                  <label class="form-check-label" for="occupationChild">Child</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="occupation" value="Businessman/woman" id="businessman_woman">
-                  <label class="form-check-label" for="businessman_woman">Businessman/woman</label>
+                  <input class="form-check-input" type="radio" name="occupation" value="Businessman/woman" id="occupationBusiness">
+                  <label class="form-check-label" for="occupationBusiness">Businessman/woman</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="occupation" value="Traditional healer" id="traditional_healer">
-                  <label class="form-check-label" for="traditional_healer">Traditional healer</label>
+                  <input class="form-check-input" type="radio" name="occupation" value="Traditional Healer" id="occupationHealer">
+                  <label class="form-check-label" for="occupationHealer">Traditional Healer</label>
                 </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="occupation" value="Other" id="occupationOther">
+                  <label class="form-check-label" for="occupationOther">Other</label>
+                </div>
+                <input type="text" class="form-control mt-2" name="occupation_other" placeholder="Specify other occupation">
               </div>
             </div>
+            <hr>
             <div class="row g-3">
-              <label class="form-label d-block">Location where patient became ill</label>
+              <div class="col-12">
+                <label class="form-label">Location where patient became ill</label>
+              </div>
               <div class="col-md-4">
                 <label class="form-label">Village/Town</label>
                 <input type="text" class="form-control" name="ill_village_town">
@@ -162,8 +171,11 @@
                 <input type="text" class="form-control" name="ill_district">
               </div>
             </div>
+            <hr>
             <div class="row g-3">
-              <label class="form-label d-block">GPS Coordinates at House</label>
+              <div class="col-12">
+                <label class="form-label">GPS Coordinates at House</label>
+              </div>
               <div class="col-md-3">
                 <label class="form-label">Latitude</label>
                 <input type="text" class="form-control" name="latitude">
@@ -173,11 +185,11 @@
                 <input type="text" class="form-control" name="longitude">
               </div>
               <div class="col-md-3">
-                <label class="form-label">Dates residing at this location</label>
+                <label class="form-label">Date residing from</label>
                 <input type="date" class="form-control" name="date_residing_from">
               </div>
               <div class="col-md-3">
-                <label class="form-label">Dates residing at this location</label>
+                <label class="form-label">Date residing to</label>
                 <input type="date" class="form-control" name="date_residing_to">
               </div>
             </div>
@@ -194,41 +206,64 @@
         </h2>
         <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#vhfFormAccordion">
           <div class="accordion-body">
-            <table class="table table-bordered table-sm table-striped table-hover">
-              <thead>
-                <tr>
-                  <th colspan="4">Date of initial symptom onset</th>
-                  <td colspan="2"><input type="date" class="form-control" name="date_initial_onset"></td>
-                </tr>
-                <tr>
-                  <th colspan="6" class="text-center">
-                    Please tick an answer for ALL symptoms indicating if they occurred during this illness between symptom onset and case detection
-                  </th>
-                </tr>
-                <tr class="table-secondary">
-                  <th>Symptom</th>
-                  <th>Yes</th>
-                  <th>No</th>
-                  <th>Unknown</th>
-                  <th>Date</th>
-                  <th>Duration (days)</th>
-                </tr>
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <label class="form-label fw-bold">Date of initial symptom onset*</label>
+                <input type="date" class="form-control" name="date_initial_onset">
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-bordered table-sm table-hover">
+                <thead class="table-light">
+                  <tr>
+                    <th colspan="6" class="text-center bg-light">Please tick an answer for ALL symptoms indicating if they occurred during this illness between symptom onset and case detection</th>
+                  </tr>
+                  <tr class="table-secondary">
+                    <th class="w-25">Symptom</th>
+                    <th class="text-center">Yes</th>
+                    <th class="text-center">No</th>
+                    <th class="text-center">Unknown</th>
+                    <th class="text-center">Date</th>
+                    <th class="text-center">Duration (days)</th>
+                  </tr>
+                </thead>
                 <tbody>
                   <tr>
-                    <td>Fever</td>
-                    <td><input class="form-check-input" type="radio" name="fever" value="Yes"></td>
-                    <td><input class="form-check-input" type="radio" name="fever" value="No"></td>
-                    <td><input class="form-check-input" type="radio" name="fever" value="Unknown"></td>
-                    <td><input type="date" class="form-control" name="date_fever"></td>
-                    <td><input type="text" class="form-control" name="duration_fever"></td>
+                    <td><strong>Fever</strong></td>
+                    <td class="text-center"><input class="form-check-input" type="radio" name="fever" value="Yes"></td>
+                    <td class="text-center"><input class="form-check-input" type="radio" name="fever" value="No"></td>
+                    <td class="text-center"><input class="form-check-input" type="radio" name="fever" value="Unknown"></td>
+                    <td><input type="date" class="form-control form-control-sm" name="date_fever"></td>
+                    <td><input type="number" class="form-control form-control-sm" name="duration_fever" min="0"></td>
+                  </tr>
+                  <tr>
+                    <td>Temperature</td>
+                    <td colspan="4">
+                      <div class="d-flex align-items-center gap-3">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="temp_source" value="Axillary" id="tempAxillary">
+                          <label class="form-check-label" for="tempAxillary">Axillary</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="temp_source" value="Oral" id="tempOral">
+                          <label class="form-check-label" for="tempOral">Oral</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="temp_source" value="Rectal" id="tempRectal">
+                          <label class="form-check-label" for="tempRectal">Rectal</label>
+                        </div>
+                        <input type="number" class="form-control form-control-sm w-25" name="temperature" placeholder="Temperature (°C)" step="0.1">
+                      </div>
+                    </td>
                   </tr>
                   <tr>
                     <td>Vomiting</td>
-                    <td><input class="form-check-input" type="radio" name="vomiting" value="Yes"></td>
-                    <td><input class="form-check-input" type="radio" name="vomiting" value="No"></td>
-                    <td><input class="form-check-input" type="radio" name="vomiting" value="Unknown"></td>
-                    <td><input type="date" class="form-control" name="date_vomiting"></td>
-                    <td><input type="text" class="form-control" name="duration_vomiting"></td>
+                    <td class="text-center"><input class="form-check-input" type="radio" name="vomiting" value="Yes"></td>
+                    <td class="text-center"><input class="form-check-input" type="radio" name="vomiting" value="No"></td>
+                    <td class="text-center"><input class="form-check-input" type="radio" name="vomiting" value="Unknown"></td>
+                    <td><input type="date" class="form-control form-control-sm" name="date_vomiting"></td>
+                    <td><input type="number" class="form-control form-control-sm" name="duration_vomiting" min="0"></td>
                   </tr>
                   <tr>
                     <td>Nausea</td>
@@ -236,7 +271,7 @@
                     <td><input class="form-check-input" type="radio" name="nausea" value="No"></td>
                     <td><input class="form-check-input" type="radio" name="nausea" value="Unknown"></td>
                     <td><input type="date" class="form-control" name="date_nausea"></td>
-                    <td><input type="text" class="form-control" name="duration_nausea"></td>
+                    <td><input type="number" class="form-control" name="duration_nausea" min="0"></td>
                   </tr>
                   <tr>
                     <td>Diarrhea</td>
@@ -244,7 +279,7 @@
                     <td><input class="form-check-input" type="radio" name="diarrhea" value="No"></td>
                     <td><input class="form-check-input" type="radio" name="diarrhea" value="Unknown"></td>
                     <td><input type="date" class="form-control" name="date_diarrhea"></td>
-                    <td><input type="text" class="form-control" name="duration_diarrhea"></td>
+                    <td><input type="number" class="form-control" name="duration_diarrhea" min="0"></td>
                   </tr>
                   <tr>
                     <td>Intense fatigue/general weakness</td>
@@ -252,7 +287,7 @@
                     <td><input class="form-check-input" type="radio" name="intense_fatigue_general_weakness" value="No"></td>
                     <td><input class="form-check-input" type="radio" name="intense_fatigue_general_weakness" value="Unknown"></td>
                     <td><input type="date" class="form-control" name="date_intense_fatigue_general_weakness"></td>
-                    <td><input type="text" class="form-control" name="duration_intense_fatigue_general_weakness"></td>
+                    <td><input type="number" class="form-control" name="duration_intense_fatigue_general_weakness" min="0"></td>
                   </tr>
                   <tr>
                     <td>Epigastric pain</td>
@@ -260,7 +295,7 @@
                     <td><input class="form-check-input" type="radio" name="epigastric_pain" value="No"></td>
                     <td><input class="form-check-input" type="radio" name="epigastric_pain" value="Unknown"></td>
                     <td><input type="date" class="form-control" name="date_epigastric_pain"></td>
-                    <td><input type="text" class="form-control" name="duration_epigastric_pain"></td>
+                    <td><input type="number" class="form-control" name="duration_epigastric_pain" min="0"></td>
                   </tr>
                   <tr>
                     <td>Lower abdominal pain</td>
@@ -268,7 +303,7 @@
                     <td><input class="form-check-input" type="radio" name="lower_abdominal_pain" value="No"></td>
                     <td><input class="form-check-input" type="radio" name="lower_abdominal_pain" value="Unknown"></td>
                     <td><input type="date" class="form-control" name="date_lower_abdominal_pain"></td>
-                    <td><input type="text" class="form-control" name="duration_lower_abdominal_pain"></td>
+                    <td><input type="number" class="form-control" name="duration_lower_abdominal_pain" min="0"></td>
                   </tr>
                   <tr>
                     <td>Chest pain</td>
@@ -276,7 +311,7 @@
                     <td><input class="form-check-input" type="radio" name="chest_pain" value="No"></td>
                     <td><input class="form-check-input" type="radio" name="chest_pain" value="Unknown"></td>
                     <td><input type="date" class="form-control" name="date_chest_pain"></td>
-                    <td><input type="text" class="form-control" name="duration_chest_pain"></td>
+                    <td><input type="number" class="form-control" name="duration_chest_pain" min="0"></td>
                   </tr>
                   <tr>
                     <td>Muscle pain</td>
@@ -284,7 +319,7 @@
                     <td><input class="form-check-input" type="radio" name="muscle_pain" value="No"></td>
                     <td><input class="form-check-input" type="radio" name="muscle_pain" value="Unknown"></td>
                     <td><input type="date" class="form-control" name="date_muscle_pain"></td>
-                    <td><input type="text" class="form-control" name="duration_muscle_pain"></td>
+                    <td><input type="number" class="form-control" name="duration_muscle_pain" min="0"></td>
                   </tr>
                   <tr>
                     <td>Joint pain</td>
@@ -292,7 +327,7 @@
                     <td><input class="form-check-input" type="radio" name="joint_pain" value="No"></td>
                     <td><input class="form-check-input" type="radio" name="joint_pain" value="Unknown"></td>
                     <td><input type="date" class="form-control" name="date_joint_pain"></td>
-                    <td><input type="text" class="form-control" name="duration_joint_pain"></td>
+                    <td><input type="number" class="form-control" name="duration_joint_pain" min="0"></td>
                   </tr>
                   <tr>
                     <td>Headache</td>
@@ -300,7 +335,7 @@
                     <td><input class="form-check-input" type="radio" name="headache" value="No"></td>
                     <td><input class="form-check-input" type="radio" name="headache" value="Unknown"></td>
                     <td><input type="date" class="form-control" name="date_headache"></td>
-                    <td><input type="text" class="form-control" name="duration_headache"></td>
+                    <td><input type="number" class="form-control" name="duration_headache" min="0"></td>
                   </tr>
                   <tr>
                     <td>Cough</td>
@@ -308,7 +343,7 @@
                     <td><input class="form-check-input" type="radio" name="cough" value="No"></td>
                     <td><input class="form-check-input" type="radio" name="cough" value="Unknown"></td>
                     <td><input type="date" class="form-control" name="date_cough"></td>
-                    <td><input type="text" class="form-control" name="duration_cough"></td>
+                    <td><input type="number" class="form-control" name="duration_cough" min="0"></td>
                   </tr>
                   <tr>
                     <td>Difficulty breathing</td>
@@ -316,7 +351,7 @@
                     <td><input class="form-check-input" type="radio" name="difficulty_breathing" value="No"></td>
                     <td><input class="form-check-input" type="radio" name="difficulty_breathing" value="Unknown"></td>
                     <td><input type="date" class="form-control" name="date_difficulty_breathing"></td>
-                    <td><input type="text" class="form-control" name="duration_difficulty_breathing"></td>
+                    <td><input type="number" class="form-control" name="duration_difficulty_breathing" min="0"></td>
                   </tr>
                   <tr>
                     <td>Difficulty swallowing</td>
@@ -324,7 +359,7 @@
                     <td><input class="form-check-input" type="radio" name="difficulty_swallowing" value="No"></td>
                     <td><input class="form-check-input" type="radio" name="difficulty_swallowing" value="Unknown"></td>
                     <td><input type="date" class="form-control" name="date_difficulty_swallowing"></td>
-                    <td><input type="text" class="form-control" name="duration_difficulty_swallowing"></td>
+                    <td><input type="number" class="form-control" name="duration_difficulty_swallowing" min="0"></td>
                   </tr>
                   <tr>
                     <td>Sore throat</td>
@@ -332,7 +367,7 @@
                     <td><input class="form-check-input" type="radio" name="sore_throat" value="No"></td>
                     <td><input class="form-check-input" type="radio" name="sore_throat" value="Unknown"></td>
                     <td><input type="date" class="form-control" name="date_sore_throat"></td>
-                    <td><input type="text" class="form-control" name="duration_sore_throat"></td>
+                    <td><input type="number" class="form-control" name="duration_sore_throat" min="0"></td>
                   </tr>
                   <tr>
                     <td>Jaundice</td>
@@ -340,7 +375,7 @@
                     <td><input class="form-check-input" type="radio" name="jaundice" value="No"></td>
                     <td><input class="form-check-input" type="radio" name="jaundice" value="Unknown"></td>
                     <td><input type="date" class="form-control" name="date_jaundice"></td>
-                    <td><input type="text" class="form-control" name="duration_jaundice"></td>
+                    <td><input type="number" class="form-control" name="duration_jaundice" min="0"></td>
                   </tr>
                   <tr>
                     <td>Conjunctivitis</td>
@@ -348,7 +383,7 @@
                     <td><input class="form-check-input" type="radio" name="conjunctivitis" value="No"></td>
                     <td><input class="form-check-input" type="radio" name="conjunctivitis" value="Unknown"></td>
                     <td><input type="date" class="form-control" name="date_conjunctivitis"></td>
-                    <td><input type="text" class="form-control" name="duration_conjunctivitis"></td>
+                    <td><input type="number" class="form-control" name="duration_conjunctivitis" min="0"></td>
                   </tr>
                   <tr>
                     <td>Skin rash</td>
@@ -356,7 +391,7 @@
                     <td><input class="form-check-input" type="radio" name="skin_rash" value="No"></td>
                     <td><input class="form-check-input" type="radio" name="skin_rash" value="Unknown"></td>
                     <td><input type="date" class="form-control" name="date_skin_rash"></td>
-                    <td><input type="text" class="form-control" name="duration_skin_rash"></td>
+                    <td><input type="number" class="form-control" name="duration_skin_rash" min="0"></td>
                   </tr>
                   <tr>
                     <td>Hiccups</td>
@@ -364,7 +399,7 @@
                     <td><input class="form-check-input" type="radio" name="hiccups" value="No"></td>
                     <td><input class="form-check-input" type="radio" name="hiccups" value="Unknown"></td>
                     <td><input type="date" class="form-control" name="date_hiccups"></td>
-                    <td><input type="text" class="form-control" name="duration_hiccups"></td>
+                    <td><input type="number" class="form-control" name="duration_hiccups" min="0"></td>
                   </tr>
                   <tr>
                     <td>Pain behind eyes</td>
@@ -372,7 +407,7 @@
                     <td><input class="form-check-input" type="radio" name="pain_behind_eyes" value="No"></td>
                     <td><input class="form-check-input" type="radio" name="pain_behind_eyes" value="Unknown"></td>
                     <td><input type="date" class="form-control" name="date_pain_behind_eyes"></td>
-                    <td><input type="text" class="form-control" name="duration_pain_behind_eyes"></td>
+                    <td><input type="number" class="form-control" name="duration_pain_behind_eyes" min="0"></td>
                   </tr>
                   <tr>
                     <td>Sensitive to light</td>
@@ -380,7 +415,7 @@
                     <td><input class="form-check-input" type="radio" name="sensitive_to_light" value="No"></td>
                     <td><input class="form-check-input" type="radio" name="sensitive_to_light" value="Unknown"></td>
                     <td><input type="date" class="form-control" name="date_sensitive_to_light"></td>
-                    <td><input type="text" class="form-control" name="duration_sensitive_to_light"></td>
+                    <td><input type="number" class="form-control" name="duration_sensitive_to_light" min="0"></td>
                   </tr>
                   <tr>
                     <td>Coma/unconscious</td>
@@ -388,7 +423,7 @@
                     <td><input class="form-check-input" type="radio" name="coma_unconscious" value="No"></td>
                     <td><input class="form-check-input" type="radio" name="coma_unconscious" value="Unknown"></td>
                     <td><input type="date" class="form-control" name="date_coma_unconscious"></td>
-                    <td><input type="text" class="form-control" name="duration_coma_unconscious"></td>
+                    <td><input type="number" class="form-control" name="duration_coma_unconscious" min="0"></td>
                   </tr>
                   <tr>
                     <td>Confused or disoriented</td>
@@ -396,7 +431,7 @@
                     <td><input class="form-check-input" type="radio" name="confused_or_disoriented" value="No"></td>
                     <td><input class="form-check-input" type="radio" name="confused_or_disoriented" value="Unknown"></td>
                     <td><input type="date" class="form-control" name="date_confused_or_disoriented"></td>
-                    <td><input type="text" class="form-control" name="duration_confused_or_disoriented"></td>
+                    <td><input type="number" class="form-control" name="duration_confused_or_disoriented" min="0"></td>
                   </tr>
                   <tr>
                     <td>Convulsions</td>
@@ -404,7 +439,7 @@
                     <td><input class="form-check-input" type="radio" name="convulsions" value="No"></td>
                     <td><input class="form-check-input" type="radio" name="convulsions" value="Unknown"></td>
                     <td><input type="date" class="form-control" name="date_convulsions"></td>
-                    <td><input type="text" class="form-control" name="duration_convulsions"></td>
+                    <td><input type="number" class="form-control" name="duration_convulsions" min="0"></td>
                   </tr>
                   <tr>
                     <td>Unexplained bleeding</td>
@@ -412,7 +447,7 @@
                     <td><input class="form-check-input" type="radio" name="unexplained_bleeding" value="No"></td>
                     <td><input class="form-check-input" type="radio" name="unexplained_bleeding" value="Unknown"></td>
                     <td><input type="date" class="form-control" name="date_unexplained_bleeding"></td>
-                    <td><input type="text" class="form-control" name="duration_unexplained_bleeding"></td>
+                    <td><input type="number" class="form-control" name="duration_unexplained_bleeding" min="0"></td>
                   </tr>
                   <tr>
                     <td>Bleeding of the gums</td>
@@ -420,7 +455,7 @@
                     <td><input class="form-check-input" type="radio" name="bleeding_of_the_gums" value="No"></td>
                     <td><input class="form-check-input" type="radio" name="bleeding_of_the_gums" value="Unknown"></td>
                     <td><input type="date" class="form-control" name="date_bleeding_of_the_gums"></td>
-                    <td><input type="text" class="form-control" name="duration_bleeding_of_the_gums"></td>
+                    <td><input type="number" class="form-control" name="duration_bleeding_of_the_gums" min="0"></td>
                   </tr>
                   <tr>
                     <td>Bleeding from injection site</td>
@@ -428,7 +463,7 @@
                     <td><input class="form-check-input" type="radio" name="bleeding_from_injection_site" value="No"></td>
                     <td><input class="form-check-input" type="radio" name="bleeding_from_injection_site" value="Unknown"></td>
                     <td><input type="date" class="form-control" name="date_bleeding_from_injection_site"></td>
-                    <td><input type="text" class="form-control" name="duration_bleeding_from_injection_site"></td>
+                    <td><input type="number" class="form-control" name="duration_bleeding_from_injection_site" min="0"></td>
                   </tr>
                   <tr>
                     <td>Nose bleed (epistaxis)</td>
@@ -436,7 +471,7 @@
                     <td><input class="form-check-input" type="radio" name="nose_bleed_epistaxis" value="No"></td>
                     <td><input class="form-check-input" type="radio" name="nose_bleed_epistaxis" value="Unknown"></td>
                     <td><input type="date" class="form-control" name="date_nose_bleed_epistaxis"></td>
-                    <td><input type="text" class="form-control" name="duration_nose_bleed_epistaxis"></td>
+                    <td><input type="number" class="form-control" name="duration_nose_bleed_epistaxis" min="0"></td>
                   </tr>
                   <tr>
                     <td>Bloody stool</td>
@@ -444,7 +479,7 @@
                     <td><input class="form-check-input" type="radio" name="bloody_stool" value="No"></td>
                     <td><input class="form-check-input" type="radio" name="bloody_stool" value="Unknown"></td>
                     <td><input type="date" class="form-control" name="date_bloody_stool"></td>
-                    <td><input type="text" class="form-control" name="duration_bloody_stool"></td>
+                    <td><input type="number" class="form-control" name="duration_bloody_stool" min="0"></td>
                   </tr>
                   <tr>
                     <td>Blood in vomit</td>
@@ -452,7 +487,7 @@
                     <td><input class="form-check-input" type="radio" name="blood_in_vomit" value="No"></td>
                     <td><input class="form-check-input" type="radio" name="blood_in_vomit" value="Unknown"></td>
                     <td><input type="date" class="form-control" name="date_blood_in_vomit"></td>
-                    <td><input type="text" class="form-control" name="duration_blood_in_vomit"></td>
+                    <td><input type="number" class="form-control" name="duration_blood_in_vomit" min="0"></td>
                   </tr>
                   <tr>
                     <td>Coughing up blood (hemoptysis)</td>
@@ -460,7 +495,7 @@
                     <td><input class="form-check-input" type="radio" name="coughing_up_blood_hemoptysis" value="No"></td>
                     <td><input class="form-check-input" type="radio" name="coughing_up_blood_hemoptysis" value="Unknown"></td>
                     <td><input type="date" class="form-control" name="date_coughing_up_blood_hemoptysis"></td>
-                    <td><input type="text" class="form-control" name="duration_coughing_up_blood_hemoptysis"></td>
+                    <td><input type="number" class="form-control" name="duration_coughing_up_blood_hemoptysis" min="0"></td>
                   </tr>
                   <tr>
                     <td>Bleeding from vagina</td>
@@ -468,7 +503,7 @@
                     <td><input class="form-check-input" type="radio" name="bleeding_from_vagina" value="No"></td>
                     <td><input class="form-check-input" type="radio" name="bleeding_from_vagina" value="Unknown"></td>
                     <td><input type="date" class="form-control" name="date_bleeding_from_vagina"></td>
-                    <td><input type="text" class="form-control" name="duration_bleeding_from_vagina"></td>
+                    <td><input type="number" class="form-control" name="duration_bleeding_from_vagina" min="0"></td>
                   </tr>
                   <tr>
                     <td>Bruising of the skin</td>
@@ -476,7 +511,7 @@
                     <td><input class="form-check-input" type="radio" name="bruising_of_the_skin" value="No"></td>
                     <td><input class="form-check-input" type="radio" name="bruising_of_the_skin" value="Unknown"></td>
                     <td><input type="date" class="form-control" name="date_bruising_of_the_skin"></td>
-                    <td><input type="text" class="form-control" name="duration_bruising_of_the_skin"></td>
+                    <td><input type="number" class="form-control" name="duration_bruising_of_the_skin" min="0"></td>
                   </tr>
                   <tr>
                     <td>Blood in urine</td>
@@ -484,7 +519,7 @@
                     <td><input class="form-check-input" type="radio" name="blood_in_urine" value="No"></td>
                     <td><input class="form-check-input" type="radio" name="blood_in_urine" value="Unknown"></td>
                     <td><input type="date" class="form-control" name="date_blood_in_urine"></td>
-                    <td><input type="text" class="form-control" name="duration_blood_in_urine"></td>
+                    <td><input type="number" class="form-control" name="duration_blood_in_urine" min="0"></td>
                   </tr>
                   <tr>
                     <td>Other hemorrhagic symptoms</td>
@@ -492,109 +527,487 @@
                     <td><input class="form-check-input" type="radio" name="other_hemorrhagic_symptoms" value="No"></td>
                     <td><input class="form-check-input" type="radio" name="other_hemorrhagic_symptoms" value="Unknown"></td>
                     <td><input type="date" class="form-control" name="date_other_hemorrhagic_symptoms"></td>
-                    <td><input type="text" class="form-control" name="duration_other_hemorrhagic_symptoms"></td>
+                    <td><input type="number" class="form-control" name="duration_other_hemorrhagic_symptoms" min="0"></td>
                   </tr>
                 </tbody>
               </table>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Section 3: Hospitalization -->
+      <!-- Section 3: Clinic and Hospitalization -->
       <div class="accordion-item">
         <h2 class="accordion-header" id="headingThree">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-            Section 3: Hospitalization
+            Section 3: Clinic and Hospitalization
           </button>
         </h2>
         <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#vhfFormAccordion">
           <div class="accordion-body">
-            <div class="mb-3">
-              <label class="form-label">Was the patient hospitalized?</label>
-              <div>
-                <input type="radio" name="hospitalized" value="Yes"> Yes
-                <input type="radio" name="hospitalized" value="No"> No
-                <input type="radio" name="hospitalized" value="Unknown"> Unknown
+            <div class="row g-4">
+              <div class="col-md-6">
+                <label class="form-label fw-bold">Is the patient hospitalized?*</label>
+                <div class="d-flex gap-4">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="hospitalized" value="Yes">
+                    <label class="form-check-label">Yes</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="hospitalized" value="No">
+                    <label class="form-check-label">No</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Date of Hospital Admission</label>
+                <input type="date" class="form-control" name="admission_date">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Health Facility Name</label>
+                <input type="text" class="form-control" name="health_facility_name">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Is the patient in isolation?</label>
+                <div class="d-flex gap-4">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="isolation" value="Yes">
+                    <label class="form-check-label">Yes</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="isolation" value="No">
+                    <label class="form-check-label">No</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Date of Isolation</label>
+                <input type="date" class="form-control" name="isolation_date">
               </div>
             </div>
-            <div class="mb-3">
-              <label class="form-label">Health Facility Name</label>
-              <input type="text" class="form-control" name="health_facility_name">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Admission Date</label>
-              <input type="date" class="form-control" name="admission_date">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Was the patient in isolation?</label>
-              <div>
-                <input type="radio" name="isolation" value="Yes"> Yes
-                <input type="radio" name="isolation" value="No"> No
-                <input type="radio" name="isolation" value="Unknown"> Unknown
+
+            <div class="mt-4">
+              <h5 class="mb-3">Previous Hospitalizations</h5>
+              <div class="card p-4">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label">Dates of Hospitalization</label>
+                    <input type="text" class="form-control" name="prev_hospitalization_dates" placeholder="dd/mm/yyyy - dd/mm/yyyy">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Health Facility Name</label>
+                    <input type="text" class="form-control" name="prev_health_facility_name">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Village</label>
+                    <input type="text" class="form-control" name="prev_hospitalization_village">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">District</label>
+                    <input type="text" class="form-control" name="prev_hospitalization_district">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Was the patient isolated?</label>
+                    <div class="d-flex gap-4">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="prevIsolated" value="Yes">
+                        <label class="form-check-label">Yes</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="prevIsolated" value="No">
+                        <label class="form-check-label">No</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Isolation Date</label>
-              <input type="date" class="form-control" name="isolation_date">
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Section 4: Risk Factors -->
+      <!-- Section 4: Epidemiological Risk Factors and Exposures -->
       <div class="accordion-item">
         <h2 class="accordion-header" id="headingFour">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-            Section 4: Risk Factors
+            Section 4: Epidemiological Risk Factors and Exposures
           </button>
         </h2>
         <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#vhfFormAccordion">
           <div class="accordion-body">
-            <div class="mb-3">
-              <label class="form-label">Contact with Case</label>
-              <div>
-                <input type="radio" name="contactWithCase" value="Yes"> Yes
-                <input type="radio" name="contactWithCase" value="No"> No
-                <input type="radio" name="contactWithCase" value="Unknown"> Unknown
+            <div class="row g-4">
+              <!-- Contact with Case -->
+              <div class="col-12">
+                <div class="card p-4">
+                  <h5 class="mb-3">Contact with Known or Suspect Case</h5>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label fw-bold">Did the patient have contact with a known or suspect case?*</label>
+                      <div class="d-flex gap-4">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="contactWithCase" value="Yes">
+                          <label class="form-check-label">Yes</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="contactWithCase" value="No">
+                          <label class="form-check-label">No</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="contactWithCase" value="Unknown">
+                          <label class="form-check-label">Unknown</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Name of Contact</label>
+                      <input type="text" class="form-control" name="contact_name" placeholder="Enter contact name">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Relation to Patient</label>
+                      <input type="text" class="form-control" name="contact_relation" placeholder="Enter relation">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Dates of Exposure</label>
+                      <input type="text" class="form-control" name="contact_dates" placeholder="dd/mm/yyyy">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Village</label>
+                      <input type="text" class="form-control" name="contact_village" placeholder="Enter village">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">District</label>
+                      <input type="text" class="form-control" name="contact_district" placeholder="Enter district">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Was person alive or dead?</label>
+                      <div class="d-flex gap-4">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="contact_status" value="Alive">
+                          <label class="form-check-label">Alive</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="contact_status" value="Dead">
+                          <label class="form-check-label">Dead</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Date of death (if applicable)</label>
+                      <input type="date" class="form-control" name="contact_death_date">
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label">Contact Types</label>
+                      <textarea class="form-control" name="contact_types" rows="2" placeholder="e.g. touched body fluids, physical contact, shared utensils, etc."></textarea>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Contact Name</label>
-              <input type="text" class="form-control" name="contact_name">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Relationship to Contact</label>
-              <input type="text" class="form-control" name="contact_relation">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Contact Dates</label>
-              <input type="text" class="form-control" name="contact_dates">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Contact Village</label>
-              <input type="text" class="form-control" name="contact_village">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Contact District</label>
-              <input type="text" class="form-control" name="contact_district">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Contact Status</label>
-              <input type="text" class="form-control" name="contact_status">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Contact Types</label>
-              <input type="text" class="form-control" name="contact_types">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Contact Death Date</label>
-              <input type="date" class="form-control" name="contact_death_date">
+
+              <!-- Funeral Attendance -->
+              <div class="col-12">
+                <div class="card p-4">
+                  <h5 class="mb-3">Funeral Attendance</h5>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label fw-bold">Did the patient attend a funeral before becoming ill?*</label>
+                      <div class="d-flex gap-4">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="attendedFuneral" value="Yes">
+                          <label class="form-check-label">Yes</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="attendedFuneral" value="No">
+                          <label class="form-check-label">No</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="attendedFuneral" value="Unknown">
+                          <label class="form-check-label">Unknown</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Name of Deceased</label>
+                      <input type="text" class="form-control" name="funeral_deceased_name" placeholder="Enter name">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Relation to Patient</label>
+                      <input type="text" class="form-control" name="funeral_relation" placeholder="Enter relation">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Dates of Funeral Attendance</label>
+                      <input type="text" class="form-control" name="funeral_dates" placeholder="dd/mm/yyyy">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Village</label>
+                      <input type="text" class="form-control" name="funeral_village" placeholder="Enter village">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">District</label>
+                      <input type="text" class="form-control" name="funeral_district" placeholder="Enter district">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Did the patient participate in body preparation?</label>
+                      <div class="d-flex gap-4">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="participateBody" value="Yes">
+                          <label class="form-check-label">Yes</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="participateBody" value="No">
+                          <label class="form-check-label">No</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Community Illness -->
+              <div class="col-12">
+                <div class="card p-4">
+                  <h5 class="mb-3">Community Illness</h5>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label fw-bold">Are there more community members with similar illness?*</label>
+                      <div class="d-flex gap-4">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="communityIllness" value="Yes">
+                          <label class="form-check-label">Yes</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="communityIllness" value="No">
+                          <label class="form-check-label">No</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="communityIllness" value="Unknown">
+                          <label class="form-check-label">Unknown</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Village</label>
+                      <input type="text" class="form-control" name="community_village" placeholder="Enter village">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">District</label>
+                      <input type="text" class="form-control" name="community_district" placeholder="Enter district">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Date(s)</label>
+                      <input type="text" class="form-control" name="community_dates" placeholder="Enter dates">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Travel History -->
+              <div class="col-12">
+                <div class="card p-4">
+                  <h5 class="mb-3">Travel History</h5>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label fw-bold">Did the patient travel before becoming ill?*</label>
+                      <div class="d-flex gap-4">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="travelBeforeIllness" value="Yes">
+                          <label class="form-check-label">Yes</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="travelBeforeIllness" value="No">
+                          <label class="form-check-label">No</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="travelBeforeIllness" value="Unknown">
+                          <label class="form-check-label">Unknown</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Village</label>
+                      <input type="text" class="form-control" name="travel_village" placeholder="Enter village">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">District</label>
+                      <input type="text" class="form-control" name="travel_district" placeholder="Enter district">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Date(s)</label>
+                      <input type="text" class="form-control" name="travel_dates" placeholder="Enter dates">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Clinic Visit -->
+              <div class="col-12">
+                <div class="card p-4">
+                  <h5 class="mb-3">Clinic Visit</h5>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label fw-bold">Did the patient visit a clinic or health facility before illness?*</label>
+                      <div class="d-flex gap-4">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="clinicVisitBeforeIllness" value="Yes">
+                          <label class="form-check-label">Yes</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="clinicVisitBeforeIllness" value="No">
+                          <label class="form-check-label">No</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="clinicVisitBeforeIllness" value="Unknown">
+                          <label class="form-check-label">Unknown</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Health Facility Name</label>
+                      <input type="text" class="form-control" name="clinic_name" placeholder="Enter facility name">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Village</label>
+                      <input type="text" class="form-control" name="clinic_village" placeholder="Enter village">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">District</label>
+                      <input type="text" class="form-control" name="clinic_district" placeholder="Enter district">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Date(s)</label>
+                      <input type="text" class="form-control" name="clinic_dates" placeholder="Enter dates">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Traditional Healer -->
+              <div class="col-12">
+                <div class="card p-4">
+                  <h5 class="mb-3">Traditional Healer Consultation</h5>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label fw-bold">Did the patient consult a traditional/spiritual healer?*</label>
+                      <div class="d-flex gap-4">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="traditionalHealer" value="Yes">
+                          <label class="form-check-label">Yes</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="traditionalHealer" value="No">
+                          <label class="form-check-label">No</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="traditionalHealer" value="Unknown">
+                          <label class="form-check-label">Unknown</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Name of Healer</label>
+                      <input type="text" class="form-control" name="healer_name" placeholder="Enter healer name">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Village</label>
+                      <input type="text" class="form-control" name="healer_village" placeholder="Enter village">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">District</label>
+                      <input type="text" class="form-control" name="healer_district" placeholder="Enter district">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Date of Consultation</label>
+                      <input type="date" class="form-control" name="healer_date">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Animal Exposure -->
+              <div class="col-12">
+                <div class="card p-4">
+                  <h5 class="mb-3">Animal Exposure</h5>
+                  <div class="row g-3">
+                    <div class="col-12">
+                      <label class="form-label fw-bold">Animal or meat exposure</label>
+                      <div class="row g-3">
+                        <div class="col-md-3">
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="animal_exposure[]" value="bats" id="animalBat">
+                            <label class="form-check-label" for="animalBat">Bats or bat feces/urine</label>
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="animal_exposure[]" value="monkeys" id="animalMonkey">
+                            <label class="form-check-label" for="animalMonkey">Primates (monkeys)</label>
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="animal_exposure[]" value="rodents" id="animalRodent">
+                            <label class="form-check-label" for="animalRodent">Rodents or rodent feces/urine</label>
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="animal_exposure[]" value="pigs" id="animalPig">
+                            <label class="form-check-label" for="animalPig">Pigs</label>
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="animal_exposure[]" value="other" id="animalOther">
+                            <label class="form-check-label" for="animalOther">Other (specify)</label>
+                          </div>
+                        </div>
+                        <div class="col-md-9">
+                          <input type="text" class="form-control" name="animal_exposure_other" placeholder="Specify other animal exposure">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label fw-bold">Tick bite in past 2 weeks?*</label>
+                      <div class="d-flex gap-4">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="tickBite" value="Yes">
+                          <label class="form-check-label">Yes</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="tickBite" value="No">
+                          <label class="form-check-label">No</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="tickBite" value="Unknown">
+                          <label class="form-check-label">Unknown</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label fw-bold">Skinned or ate bush meat in past 21 days?*</label>
+                      <div class="d-flex gap-4">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="bushMeat" value="Yes">
+                          <label class="form-check-label">Yes</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="bushMeat" value="No">
+                          <label class="form-check-label">No</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="bushMeat" value="Unknown">
+                          <label class="form-check-label">Unknown</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Section 5: Clinical Specimens and Laboratory Testing -->
+      <!-- Section 5: Laboratory -->
       <div class="accordion-item">
         <h2 class="accordion-header" id="headingFive">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
@@ -603,112 +1016,163 @@
         </h2>
         <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#vhfFormAccordion">
           <div class="accordion-body">
-            <h6>Sample 1</h6>
-            <div class="mb-3">
-              <label class="form-label">Sample Collection Date</label>
-              <input type="date" class="form-control" name="sample_collection_date">
+            <div class="card p-4">
+              <h5 class="mb-4">Sample 1</h5>
+              <div class="row g-4">
+                <div class="col-md-6">
+                  <label class="form-label fw-bold">Sample Collection Date*</label>
+                  <input type="date" class="form-control" name="sample_collection_date">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-bold">Sample Collection Time*</label>
+                  <input type="time" class="form-control" name="sample_collection_time">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-bold">Sample Type*</label>
+                  <select class="form-select" name="sample_type">
+                    <option value="">Select sample type</option>
+                    <option value="Whole blood">Whole blood</option>
+                    <option value="Oral/Buccal swab">Oral/Buccal swab</option>
+                    <option value="Skin biopsy">Skin biopsy</option>
+                    <option value="Post mortem heart blood">Post mortem heart blood</option>
+                    <option value="Post mortem jugular blood draw">Post mortem jugular blood draw</option>
+                    <option value="Other">Other (specify below)</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Other Sample Type</label>
+                  <input type="text" class="form-control" name="other_sample_type" placeholder="Specify other specimen type">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-bold">Requested Test*</label>
+                  <input type="text" class="form-control" name="requested_test" placeholder="e.g. PCR">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Serology</label>
+                  <input type="text" class="form-control" name="serology" placeholder="e.g. IgM, IgG">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-bold">Malaria RDT*</label>
+                  <div class="d-flex gap-4">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="malariaRdt" value="Pos">
+                      <label class="form-check-label">Pos</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="malariaRdt" value="Neg">
+                      <label class="form-check-label">Neg</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="malariaRdt" value="ND">
+                      <label class="form-check-label">Not Done</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-bold">HIV RDT*</label>
+                  <div class="d-flex gap-4">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="hivRdt" value="Pos">
+                      <label class="form-check-label">Pos</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="hivRdt" value="Neg">
+                      <label class="form-check-label">Neg</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="hivRdt" value="ND">
+                      <label class="form-check-label">Not Done</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="mb-3">
-              <label class="form-label">Sample Collection Time</label>
-              <input type="time" class="form-control" name="sample_collection_time">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Sample Type</label>
-              <select class="form-select" name="sample_type">
-                <option>Whole blood</option>
-                <option>Oral/Buccal swab</option>
-                <option>Skin biopsy</option>
-                <option>Post mortem heart blood</option>
-                <option>Post mortem jugular blood draw</option>
-                <option>Other (specify below)</option>
-              </select>
-              <input type="text" class="form-control mt-2" name="other_sample_type" placeholder="Specify other specimen type">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Requested Test</label>
-              <input type="text" class="form-control" name="requested_test" placeholder="e.g. PCR">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Serology</label>
-              <input type="text" class="form-control" name="serology" placeholder="e.g. IgM, IgG">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Malaria RDT</label><br>
-              <input type="radio" name="malaria_rdt" value="Pos"> Pos
-              <input type="radio" name="malaria_rdt" value="Neg"> Neg
-              <input type="radio" name="malaria_rdt" value="ND"> Not Done
-            </div>
-            <div class="mb-3">
-              <label class="form-label">HIV RDT</label><br>
-              <input type="radio" name="hiv_rdt" value="Pos"> Pos
-              <input type="radio" name="hiv_rdt" value="Neg"> Neg
-              <input type="radio" name="hiv_rdt" value="ND"> Not Done
+
+            <div class="alert alert-info mt-4">
+              <h6 class="alert-heading fw-bold mb-3">Specimen/Shipping Instructions:</h6>
+              <ul class="mb-0">
+                <li>Label sample with patient name, date of collection, and case ID</li>
+                <li>Send sample in cold chain between 2–8°C aided by ice packs</li>
+                <li>Collect whole blood in a purple top (EDTA) tube – green or red top tubes acceptable if purple not available</li>
+                <li>Preferred sample volume: 4 ml (minimum: 2 ml)</li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Section 6: Case Investigator -->
+      <!-- Section 6: Investigator -->
       <div class="accordion-item">
         <h2 class="accordion-header" id="headingSix">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-            Section 6: Case Investigator Information
+            Section 6: Investigator
           </button>
         </h2>
         <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#vhfFormAccordion">
           <div class="accordion-body">
-            <div class="mb-3">
-              <label class="form-label">Investigator Name</label>
-              <input type="text" class="form-control" name="investigator_name" required>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Phone</label>
-              <input type="tel" class="form-control" name="phone">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Email</label>
-              <input type="email" class="form-control" name="email">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Position</label>
-              <input type="text" class="form-control" name="position">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">District</label>
-              <input type="text" class="form-control" name="district">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Health Facility</label>
-              <input type="text" class="form-control" name="health_facility">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Information Provided By</label>
-              <select class="form-select" name="information_source">
-                <option selected disabled>Select source</option>
-                <option value="Patient">Patient</option>
-                <option value="Proxy">Proxy</option>
-              </select>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">If Proxy, Name</label>
-              <input type="text" class="form-control" name="proxy_name">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Relation to Patient</label>
-              <input type="text" class="form-control" name="proxy_relation">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Investigator Name*</label>
+                <input type="text" class="form-control" name="investigator_name">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Phone</label>
+                <input type="tel" class="form-control" name="phone">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" name="email">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Position</label>
+                <input type="text" class="form-control" name="position">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">District</label>
+                <input type="text" class="form-control" name="investigator_district">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Health Facility</label>
+                <input type="text" class="form-control" name="investigator_health_facility">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Information Source*</label>
+                <select class="form-select" name="information_source">
+                  <option value="">Select source</option>
+                  <option value="Patient">Patient</option>
+                  <option value="Proxy">Proxy</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Proxy Name</label>
+                <input type="text" class="form-control" name="proxy_name">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Proxy Relation</label>
+                <input type="text" class="form-control" name="proxy_relation">
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="text-center mt-4">
-      <button type="submit" class="btn btn-primary">Submit Form</button>
+    <div class="mt-4 text-center">
+      <button type="submit" class="btn btn-primary btn-lg">Submit Form</button>
     </div>
   </form>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('vhfForm');
+  form.addEventListener('submit', function(e) {
+    // Form validation can be added here if needed
+    // The form will submit normally to /vhf-cif/save
+  });
+});
+</script>
 </body>
 </html>
 {{ end }}

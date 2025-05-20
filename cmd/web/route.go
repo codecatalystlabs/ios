@@ -116,6 +116,9 @@ func RouteHome(app *fiber.App, db *sql.DB, sl *slog.Logger, store *session.Store
 	app.Get("/help", func(c *fiber.Ctx) error { return handlers.HandlerHelp(c, db, sl, store, config) })
 	app.Get("/vhf-cif", func(c *fiber.Ctx) error { return handlers.GenerateHTML(c, db, nil, "vhf_cif") })
 	app.Post("/vhf-cif/save", func(c *fiber.Ctx) error { return handlers.HandlerVHFCIFSubmit(c, db, sl, store, config) })
+	app.Get("/vhf-cif/success", func(c *fiber.Ctx) error { return handlers.HandlerVHFSuccess(c, db, sl, store, config) })
+	app.Get("/vhf-cif/list", func(c *fiber.Ctx) error { return handlers.HandlerVHFList(c, db, sl, store, config) })
+	app.Get("/vhf-cif/view/:id", func(c *fiber.Ctx) error { return handlers.HandlerVHFView(c, db, sl, store, config) })
 }
 
 func RouteVerify(app *fiber.App, db *sql.DB, sl *slog.Logger, store *session.Store, config handlers.Config) {
