@@ -1,0 +1,80 @@
+{{ define "layout" }}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ios - Integrated Outbreak System</title>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #333;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .top-ribbon {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+            padding: 10px;
+        }
+        .side-menu {
+            background-color: #f8f9fa;
+            border-right: 1px solid #e9ecef;
+            height: 100vh;
+            padding-top: 20px;
+        }
+        .menu-item {
+            padding: 10px 20px;
+            display: block;
+            color: #333;
+            text-decoration: none;
+        }
+        .menu-item:hover {
+            background-color: #e9ecef;
+        }
+        .content {
+            padding: 20px;
+        }
+        .col-md-3 {
+            max-width: 200px;
+        }
+        .iframe-container {
+            width: 100%;
+            height: 100vh; /* Make it fill the entire viewport */
+        }
+        
+    </style>
+    
+</head>
+<body>
+
+            <div class="iframe-container">
+                <br/>
+                <h3>Case Management Summary Report</h3>
+                <p>
+
+                    Table 1: Case summary by Sex<br/>
+                    {{ index .Form "gender_summary" }}
+                    <br/>
+                    Table 2: Case summary by Case classification<br/>
+                    {{ index .Form "status_summary" }}
+                    <br/>
+                    Table 3: Case summary by Admission ward<br/>
+                    {{ index .Form "ward_summary" }}
+                    <br/>
+                    Table 4: Summary of Key Comorbid conditions<br/>
+                    {{ index .Form "conditions_summary" }}
+                    <br/>
+                </p>
+            </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+{{ end }}

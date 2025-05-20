@@ -1,0 +1,43 @@
+{{ define "content" }}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>VHF Case Investigation Forms</h2>
+        <a href="/vhf-cif" class="btn btn-primary">New Case</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Patient Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>District</th>
+                    <th>Health Facility</th>
+                    <th>Date of Onset</th>
+                    <th>Created At</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{ range . }}
+                <tr>
+                    <td>{{ .ID }}</td>
+                    <td>{{ .PatientName }}</td>
+                    <td>{{ .Age }}</td>
+                    <td>{{ .Gender }}</td>
+                    <td>{{ .District }}</td>
+                    <td>{{ .HealthFacility }}</td>
+                    <td>{{ .DateOfOnset.Format "2006-01-02" }}</td>
+                    <td>{{ .CreatedAt.Format "2006-01-02 15:04:05" }}</td>
+                    <td>
+                        <a href="/vhf-cif/view/{{ .ID }}" class="btn btn-sm btn-info">View</a>
+                    </td>
+                </tr>
+                {{ end }}
+            </tbody>
+        </table>
+    </div>
+</div>
+{{ end }} 

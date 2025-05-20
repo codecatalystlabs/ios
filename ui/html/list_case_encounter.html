@@ -1,0 +1,55 @@
+{{define "content"}}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">All Encounters for {{.Client.FirstName}} {{.Client.LastName}}</h3>
+                    <div class="card-tools">
+                        <a href="/clients/view/{{.Client.ID}}" class="btn btn-tool">
+                            <i class="fas fa-arrow-left"></i> Back to Client
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    {{if .Encounters}}
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Provider</th>
+                                    <th>Clinical Team</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{range .Encounters}}
+                                <tr>
+                                    <td>{{.EncounterDate}}</td>
+                                    <td>{{.EmployeeFname}} {{.EmployeeLname}}</td>
+                                    <td>{{.ClinicalTeam}}</td>
+                                    <td>
+                                        <a href="/encounters/view/{{.EncounterID}}?client_id={{$.Client.ID}}&encounter_date={{.EncounterDate}}" class="btn btn-sm btn-info">
+                                            <i class="fas fa-eye"></i> View
+                                        </a>
+                                        <a href="/encounters/edit/{{.EncounterID}}?client_id={{$.Client.ID}}&encounter_date={{.EncounterDate}}" class="btn btn-sm btn-primary">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </a>
+                                    </td>
+                                </tr>
+                                {{end}}
+                            </tbody>
+                        </table>
+                    </div>
+                    {{else}}
+                    <div class="alert alert-info">
+                        No encounters found for this client.
+                    </div>
+                    {{end}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}} 

@@ -1,0 +1,81 @@
+{{define "content"}}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Active Outbreaks</h5>
+                    <a href="/outbreaks/new/0" class="btn btn-primary">New Outbreak</a>
+                </div>
+                <div class="card-body">
+                    {{if .Items}}
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Start Date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{range .Items}}
+                                {{$outbreak := .}}
+                                <tr>
+                                    <td>{{$outbreak.Name.String}}</td>
+                                    <td>{{$outbreak.Description.String}}</td>
+                                    <td>{{humanDate $outbreak.StartDate.Time}}</td>
+                                    <td>
+                                        <span class="badge {{if eq $outbreak.Status.String "active"}}bg-success{{else}}bg-danger{{end}}">
+                                            {{$outbreak.Status.String}}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a href="/outbreaks/edit/{{$outbreak.ID}}" class="btn btn-sm btn-info">Edit</a>
+                                            {{if eq $outbreak.Status.String "active"}}
+                                            <a href="/outbreaks/close/{{$outbreak.ID}}" class="btn btn-sm btn-warning" onclick="return confirm('Are you sure you want to close this outbreak?')">Close</a>
+                                            {{end}}
+                                            <button onclick="selectOutbreak({{$outbreak.ID}})" class="btn btn-sm btn-primary">Select</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {{end}}
+                            </tbody>
+                        </table>
+                    </div>
+                    {{else}}
+                    <div class="alert alert-info">
+                        No active outbreaks found.
+                    </div>
+                    {{end}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function selectOutbreak(outbreakId) {
+    fetch('/outbreaks/select/' + outbreakId, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            window.location.href = '/';
+        } else {
+            alert('Failed to select outbreak');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Failed to select outbreak');
+    });
+}
+</script>
+{{end}} 

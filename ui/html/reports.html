@@ -1,0 +1,120 @@
+{{ define "layout" }}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ios - Integrated Outbreak System</title>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #333;
+            font-family: Arial, sans-serif;
+        }
+        .top-ribbon {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+            padding: 10px;
+        }
+        .side-menu {
+            background-color: #f8f9fa;
+            border-right: 1px solid #e9ecef;
+            height: 100vh;
+            padding-top: 20px;
+        }
+        .menu-item {
+            padding: 10px 20px;
+            display: block;
+            color: #333;
+            text-decoration: none;
+        }
+        .menu-item:hover {
+            background-color: #e9ecef;
+        }
+        .content {
+            padding: 20px;
+            height: 100vh;
+        }
+        .col-md-3 {
+            max-width: 200px;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Ribbon -->
+    <div class="top-ribbon d-flex justify-content-between">
+        <div class="ms-3">
+            <a href="/" class="me-3">Home</a>
+            <a href="/about" class="me-3">About</a>
+            <a href="#">Contact</a>
+        </div>
+        <div class="me-3">
+            <a href="/logout" class="me-3">Logout</a>
+            <a href="#">My Account</a>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Left-Hand Side Menu -->
+            <div class="col-md-3 side-menu">
+                <form action="/reports/view"  method="POST" target="reportView">
+                    <div class="mb-3">
+                        <label for="start">Start Date</label>
+                        <input type="text" class="form-control" id="start" name="start" placeholder="start.">
+                    </div>
+                    <div class="mb-3">
+                        <label for="stop">Stop Date</label>
+                        <input type="text" class="form-control" id="stop" name="stop" placeholder="Stop.">
+                    </div>
+                    <div class="mb-3">
+                        <label for="patient">Patient group</label>
+                        <select class="form-select" id="patient" name="patient">
+                            <option value="">All</option>
+                            <option value="case">Case</option>
+                            <option value="suspect">Suspect</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="outcome">Outcome</label>
+                        <select class="form-select" id="outcome" name="outcome">
+                            <option value="">All</option>
+                            <option value="in">In Treatment</option>
+                            <option value="recovery">Recovered</option>
+                            <option value="died">Died</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="report">Report</label>
+                        <select class="form-select" id="report" name="report">
+                            <option value="">All</option>
+                            <option value="category1">Category 1</option>
+                            <option value="category2">Category 2</option>
+                            <option value="category3">Category 3</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Generate</button>
+                </form>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <div class="content">
+                    <iframe name="reportView" id="reportView" src="/reports/view" style="width: 100%;height: 100; border: none;"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+{{ end }}
