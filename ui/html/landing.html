@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ministry of Health - Case Investigation Forms</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 1rem 0;
+    }
+
+    .main-content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 0;
+    }
+
+    .menu-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .menu-item {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      text-align: center;
+      min-width: 200px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .menu-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      color: inherit;
+    }
+
+    .menu-item h3 {
+      margin-bottom: 0.5rem;
+      color: #0d6efd;
+    }
+
+    .menu-item p {
+      margin-bottom: 0;
+      color: #6c757d;
+    }
+
+    .footer {
+      background-color: #fff;
+      padding: 1rem 0;
+      text-align: center;
+      box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+    }
+
+    @media (max-width: 768px) {
+      .menu-container {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .menu-item {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1 class="text-center mb-0">Ministry of Health</h1>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="menu-container">
+      <a href="/vhf-cif" class="menu-item">
+        <h3>VHF Case Investigation Form</h3>
+        <p>Report and track VHF cases</p>
+      </a>
+      <a href="#" class="menu-item">
+        <h3>M-Pox Case Investigation Form</h3>
+        <p>Report and track M-Pox cases</p>
+      </a>
+      <a href="#" class="menu-item">
+        <h3>Measles Case Investigation Form</h3>
+        <p>Report and track Measles cases</p>
+      </a>
+      <a href="#" class="menu-item">
+        <h3>Polio Case Investigation Form</h3>
+        <p>Report and track Polio cases</p>
+      </a>
+      <a href="#" class="menu-item">
+        <h3>Other Alerts</h3>
+        <p>Report and track other disease cases</p>
+      </a>
+      <a href="/login" class="menu-item">
+        <h3>Login</h3>
+        <p>Access the system</p>
+      </a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="mb-0">&copy; {{.CurrentYear}} Ministry of Health. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 

@@ -67,7 +67,8 @@ function selectOutbreak(outbreakId) {
     })
     .then(response => {
         if (response.ok) {
-            window.location.href = '/';
+            // Redirect to home page after successful selection
+            window.location.href = '/home';
         } else {
             alert('Failed to select outbreak');
         }

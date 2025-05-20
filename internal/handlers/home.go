@@ -34,6 +34,7 @@ func HandlerHome(c *fiber.Ctx, db *sql.DB, sl *slog.Logger, store *session.Store
 	data.User = username
 	data.Form = outbreak
 
+	// Instead of redirecting, render the home page with the selected outbreak
 	return GenerateHTML(c, db, data, "home")
 }
 
@@ -61,7 +62,7 @@ func HandlerLoginSubmit(c *fiber.Ctx, db *sql.DB, sl *slog.Logger, store *sessio
 		userID := sess.Get("user")
 		if userID != nil {
 			fmt.Println("Already logged in")
-			return c.Redirect("/", 302)
+			return c.Redirect("/outbreaks", 302)
 		}
 	}
 
@@ -85,7 +86,6 @@ func HandlerLoginSubmit(c *fiber.Ctx, db *sql.DB, sl *slog.Logger, store *sessio
 		// Get session
 		sess, err := store.Get(c)
 		if err != nil {
-			//return c.Status(fiber.StatusInternalServerError).SendString("Session error")
 			sl.Info("Session error")
 			return c.Redirect("/login?serror")
 		}
@@ -97,13 +97,12 @@ func HandlerLoginSubmit(c *fiber.Ctx, db *sql.DB, sl *slog.Logger, store *sessio
 
 		// Save session
 		if err := sess.Save(); err != nil {
-			//return c.Status(fiber.StatusInternalServerError).SendString("Failed to save session")
 			sl.Info("Failed to save session")
 			return c.Redirect("/login?sfail")
 		}
 
-		// Redirect to dashboard
-		return c.Redirect("/?goodnes=1")
+		// Redirect to outbreaks page
+		return c.Redirect("/outbreaks")
 	}
 
 	return nil

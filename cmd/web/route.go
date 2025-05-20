@@ -20,16 +20,12 @@ func SetRoute(app *fiber.App, db *sql.DB, store *session.Store, sl *slog.Logger,
 	// Add outbreak routes
 	RouteOutbreaks(app, db, sl, store, config)
 
-	// discharge verification route
-	app.Use(func(c *fiber.Ctx) error {
-		return c.Next()
-	})
-
 	// Main application routes
 	appGroup := app.Group("/")
 	appGroup.Use(AuthRequired(store)) // Apply middleware for protected routes
 	{
-		// Home route
+		// Home route - protected
+		appGroup.Get("/home", func(c *fiber.Ctx) error { return handlers.HandlerHome(c, db, sl, store, config) })
 		appGroup.Get("/", func(c *fiber.Ctx) error { return handlers.HandlerHome(c, db, sl, store, config) })
 
 		// Add more routes as needed...
@@ -109,16 +105,38 @@ func RouteDischarge(v fiber.Router, db *sql.DB, sl *slog.Logger, store *session.
 }
 
 func RouteHome(app *fiber.App, db *sql.DB, sl *slog.Logger, store *session.Store, config handlers.Config) {
-	app.Get("/login", func(c *fiber.Ctx) error { return handlers.HandlerLoginForm(c, db, sl, store, config) })
-	app.Post("/login", func(c *fiber.Ctx) error { return handlers.HandlerLoginSubmit(c, db, sl, store, config) })
-	app.Get("/logout", func(c *fiber.Ctx) error { return handlers.HandlerLoginOut(c, sl, store, config) })
-	app.Get("/forget", func(c *fiber.Ctx) error { return handlers.HandlerLoginForgot(c, db, sl, store, config) })
-	app.Get("/help", func(c *fiber.Ctx) error { return handlers.HandlerHelp(c, db, sl, store, config) })
-	app.Get("/vhf-cif", func(c *fiber.Ctx) error { return handlers.GenerateHTML(c, db, nil, "vhf_cif") })
-	app.Post("/vhf-cif/save", func(c *fiber.Ctx) error { return handlers.HandlerVHFCIFSubmit(c, db, sl, store, config) })
-	app.Get("/vhf-cif/success", func(c *fiber.Ctx) error { return handlers.HandlerVHFSuccess(c, db, sl, store, config) })
-	app.Get("/vhf-cif/list", func(c *fiber.Ctx) error { return handlers.HandlerVHFList(c, db, sl, store, config) })
-	app.Get("/vhf-cif/view/:id", func(c *fiber.Ctx) error { return handlers.HandlerVHFView(c, db, sl, store, config) })
+	// Landing page
+	app.Get("/", func(c *fiber.Ctx) error {
+		return handlers.GenerateHTML(c, db, nil, "landing")
+	})
+
+	// Login routes
+	app.Get("/login", func(c *fiber.Ctx) error {
+		return handlers.GenerateHTML(c, db, nil, "login")
+	})
+	app.Post("/login", func(c *fiber.Ctx) error {
+		return handlers.HandlerLoginSubmit(c, db, sl, store, config)
+	})
+	app.Get("/logout", func(c *fiber.Ctx) error {
+		return handlers.HandlerLoginOut(c, sl, store, config)
+	})
+
+	// VHF CIF routes
+	app.Get("/vhf-cif", func(c *fiber.Ctx) error {
+		return handlers.GenerateHTML(c, db, nil, "vhf_cif")
+	})
+	app.Post("/vhf-cif/save", func(c *fiber.Ctx) error {
+		return handlers.HandlerVHFCIFSubmit(c, db, sl, store, config)
+	})
+	app.Get("/vhf-cif/success", func(c *fiber.Ctx) error {
+		return handlers.HandlerVHFSuccess(c, db, sl, store, config)
+	})
+	app.Get("/vhf-cif/list", func(c *fiber.Ctx) error {
+		return handlers.HandlerVHFList(c, db, sl, store, config)
+	})
+	app.Get("/vhf-cif/view/:id", func(c *fiber.Ctx) error {
+		return handlers.HandlerVHFView(c, db, sl, store, config)
+	})
 }
 
 func RouteVerify(app *fiber.App, db *sql.DB, sl *slog.Logger, store *session.Store, config handlers.Config) {
