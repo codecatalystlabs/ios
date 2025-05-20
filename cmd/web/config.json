@@ -1,5 +1,5 @@
 {
-    "Port"           : "0.0.0.0:8000",
+    "Port"           : "0.0.0.0:3000",
     "ReadTimeout"    : 10,
     "WriteTimeout"   : 600,
     "Static"         : "public",
